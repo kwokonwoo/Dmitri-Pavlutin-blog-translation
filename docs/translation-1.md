@@ -21,7 +21,7 @@
 
 尽管问题看起来是随机的，但是这些问题涉及JavaScript的重要概念。因此最好在下一次面试之前练习它们！
 
-### 问题一：随机全局变量
+#### 问题一：随机全局变量
 ```javascript
 function foo() {
   let a = b = 0;
@@ -39,7 +39,7 @@ typeof b; // => ???
 
 换句话说，`b`是偶然间创建的全局变量。
 
-![Accidental global variables](img/accitental-global-variables.webp)
+![Accidental global variables](../img/accitental-global-variables.webp)
 
 在浏览器中，之前的代码等价于：
 ```javascript

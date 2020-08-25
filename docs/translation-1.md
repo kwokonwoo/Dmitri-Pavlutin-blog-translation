@@ -58,3 +58,53 @@ typeof window.b; // => 'number'
 `typeof a`是`undefined`，因为变量`a`在函数`foo()`的作用域中，外部作用域无法获取`a`。
 
 因为`b`是值为`0`的全局变量，所以`typeof b`显示为`number`。
+
+#### 问题二：数组长度属性
+```javascript
+const clothes = ['jacket', 't-shirt'];
+clothes.length = 0;
+
+clothes[0]; // => ???
+```
+数组对象的`length`属性有一个特殊的行为：
+> 减少`length`属性的值将会导致数组索引在新旧`length`值之间的数组元素被删除。
+
+因此当JavaScript执行`clothes.length = 0`操作时，`clothes`所有项被删除。
+
+因为`clothes`数组被清空了，所以`clothes[0]`为`undefined`。
+
+#### 问题三：鹰眼测试（Eagle eye test）
+```javascript
+const length = 4;
+const numbers = [];
+for (var i = 0; i < length; i++); {
+  numbers.push(i + 1);
+}
+
+numbers; // => ???
+```
+我们仔细看一下出现在左大括号`{`左侧的分号`;`:
+
+<img src="../img/for-and-null-statement-pitfall-4" width = "536" height = "610" alt="Null statement pitfall" />
+
+容易被忽略的分号创建了一个空语句（null statement），空语句不执行任何操作。
+
+`for()`在空语句上（不执行任何操作）迭代4次，忽略后面的`{ numbers.push(i + 1); }`。
+
+上面的代码等价于：
+```javascript
+const length = 4;
+const numbers = [];
+var i;
+for (i = 0; i < length; i++) {
+  // 不执行任何操作
+}
+{
+  numbers.push(i + 1);
+}
+
+numbers; // => [5]
+```
+`for()`将变量`i`递增到`4`，然后执行`{ numbers.push(i + 1); }`，将`4 + 1`推到`numbers`数组。
+
+`numbers`数组为`[5]`。

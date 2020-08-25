@@ -1,4 +1,4 @@
-### [Dmitri Pavlutin 博客](https://dmitripavlutin.com/)翻译：
+[Dmitri Pavlutin Blog](https://dmitripavlutin.com/)
 
 [7个简单却棘手的JavaScript面试问题](docs/translation-1.md)
 

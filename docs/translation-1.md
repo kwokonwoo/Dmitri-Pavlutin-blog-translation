@@ -85,7 +85,7 @@ numbers; // => ???
 ```
 我们仔细看一下出现在左大括号`{`左侧的分号`;`:
 
-<img src="../img/null-statement-pitfall" width = "536" height = "610" alt="Null statement pitfall" />
+<img src="../img/null-statement-pitfall.webp" width = "536" height = "610" alt="Null statement pitfall" />
 
 容易被忽略的分号创建了一个空语句（null statement），空语句不执行任何操作。
 

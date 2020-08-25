@@ -1,4 +1,4 @@
-# 7个简单却棘手的JavaScript面试问题
+## 7个简单却棘手的JavaScript面试问题
 
 [7 Simple but Tricky JavaScript Interview Questions](https://dmitripavlutin.com/simple-but-tricky-javascript-interview-questions/)
 
@@ -39,7 +39,7 @@ typeof b; // => ???
 
 换句话说，`b`是偶然间创建的全局变量。
 
-[Accidental global variables](img/accitental-global-variables.webp)
+![Accidental global variables](img/accitental-global-variables.webp)
 
 在浏览器中，之前的代码等价于：
 ```javascript

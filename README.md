@@ -8,5 +8,7 @@
 
 [处理JavaScript中“undefined”的7点提示](docs/translation-4.md)
 
+[JavaScript闭包的简明阐释](docs/translation-5.md)
+
 ## License
 Licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)

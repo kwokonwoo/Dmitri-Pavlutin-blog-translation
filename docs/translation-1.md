@@ -108,3 +108,64 @@ numbers; // => [5]
 `for()`将变量`i`递增到`4`，然后执行`{ numbers.push(i + 1); }`，将`4 + 1`推到`numbers`数组。
 
 `numbers`数组为`[5]`。
+
+#### 问题四：自动插入分号
+```javascript
+function arrayFromValue(item) {
+  return 
+    [item];
+}
+
+arrayFromValue(10); // => ???
+```
+这里很容易忽视`return`关键字和`[item]`表达式之间的换行符。
+
+但是，这个换行符让JavaScript在`return`和`[item]`之间自动插入了一个分号。
+
+因此上面的代码等价于在`return`之后插入了分号：
+```javascript
+function arrayFromValue(item) {
+  return;
+  [item];
+}
+
+arrayFromValue(10); // => undefined
+```
+函数中的`return;`返回`undefined`，因此`arrayFromValue(10)`为`undefined`。
+
+想要了解更多有关分号自动插入内容请阅读[此章节](https://dmitripavlutin.com/7-tips-to-handle-undefined-in-javascript/#24-function-return-value)。
+
+#### 问题五：经典问题——闭包
+```javascript
+let i;
+for (i = 0; i < 3; i++) {
+  const log = () => {
+    console.log(i);
+  }
+  setTimeout(log, 100);
+}
+```
+以上代码会从控制台输出什么？
+
+如果你之前还没听说过这个问题，很有可能你的答案是`1`、`2`和`3`，这是不对的。我第一次做这道题，我的答案也是`1`、`2`、`3`！
+
+执行这段代码背后有两个阶段。
+
+**阶段1**
+
+1. `for()`迭代3次，每次迭代都会创建一个新的函数`log()`来捕获变量`i`。然后`setTimeout()`计划执行`log()`。
+2. 当`for()`循环结束时，变量`i`的值为`3`。
+
+`log()`是一个闭包，它捕获定义在外部作用域`for()`循环中的变量`i`。理解闭包词法上捕获变量`i`这一点至关重要。
+
+**阶段2**
+
+阶段2发生在100毫秒之后：
+
+1. `setTimeout()`调用3个计划好的`log()`回调。`log`读取当前变量`i`的值，当前变量`i`的值为3，控制台输出`3`。
+
+这就是为什么控制台输出的是`3`、`3`、`3`。
+
+如果你觉得闭包理解起来很困难，我建议阅读[JavaScript闭包的简明阐释](https://dmitripavlutin.com/simple-explanation-of-javascript-closures/)。
+
+你知道如何修改上面的代码输出`0`、`1`、`2`吗？在下方的评论里写下你的答案吧！

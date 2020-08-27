@@ -178,7 +178,7 @@ for (i = 0; i < 3; i++) {
 ```javascript
 0.1 + 0.2; // => 0.30000000000000004
 ```
-`0.1`和`0.2`的和并不是恰好是0.3，而是比`0.3`大一点。
+`0.1`和`0.2`的和并不是恰好是`0.3`，而是比`0.3`大一点。
 
 由于浮点数以二进制的方式进行编码，因此浮点数相加之类的操作会产生舍入误差。
 
@@ -198,6 +198,7 @@ var myVar = 'value';
 const myConst = 3.14;
 ```
 变量提升和暂时性死区是影响JavaScript变量生命周期的2个重要概念。
+
 <img src="../img/temporal-dead-zone-and-hoisting-javascript.webp" width = "536" height = "610" alt="Temporal dead zone and hoisting javascript" />
 
 在声明之前访问`myVar`结果是`undefined`，被提升的变量`var`在初始化之前值为`undefined`。

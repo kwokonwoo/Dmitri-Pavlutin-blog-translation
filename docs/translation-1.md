@@ -169,3 +169,46 @@ for (i = 0; i < 3; i++) {
 如果你觉得闭包理解起来很困难，我建议阅读[JavaScript闭包的简明阐释](https://dmitripavlutin.com/simple-explanation-of-javascript-closures/)。
 
 你知道如何修改上面的代码输出`0`、`1`、`2`吗？在下方的评论里写下你的答案吧！
+
+#### 问题六：浮点数
+```javascript
+0.1 + 0.2 === 0.3 // => ???
+```
+首先我们来看一下`0.1 + 0.2`的值：
+```javascript
+0.1 + 0.2; // => 0.30000000000000004
+```
+`0.1`和`0.2`的和并不是恰好是0.3，而是比`0.3`大一点。
+
+由于浮点数以二进制的方式进行编码，因此浮点数相加之类的操作会产生舍入误差。
+
+简而言之，直接比较浮点数并不精确。
+
+因此`0.1 + 0.2 === 0.3`是`false`。
+
+想要了解更多信息请查阅[0.30000000000000004.com](https://0.30000000000000004.com/)。
+
+
+#### 问题七：变量提升
+```javascript
+myVar; // => ???
+myConst; // => ???
+
+var myVar = 'value';
+const myConst = 3.14;
+```
+变量提升和暂时性死区是影响JavaScript变量生命周期的2个重要概念。
+<img src="../img/temporal-dead-zone-and-hoisting-javascript.webp" width = "536" height = "610" alt="Temporal dead zone and hoisting javascript" />
+
+在声明之前访问`myVar`结果是`undefined`，被提升的变量`var`在初始化之前值为`undefined`。
+
+然而，在声明行之前访问`myConst`会抛出`ReferenceError`。变量`const`在声明行`const myConst = 3.14`之前处在一个暂时性死区。
+
+想要掌握好变量提升的概念，请参阅指南[JavaScript变量提升详解](https://dmitripavlutin.com/javascript-hoisting-in-details/)。
+
+#### 划重点
+你可能认为一些问题对面试毫无用处，我也有同感，特别是问题三的鹰眼测试。尽管如此，这些问题还是可能被问到。
+
+无论怎么说，这些问题中许多都可以测试你是否真的精通JavaScript，比如说闭包的问题。如果你在看这篇博客的时候有不明白的地方，这对你接下来要学什么将很有启发！
+
+那么在面试中提这种棘手的问题是否公平呢？请发表你的观点。

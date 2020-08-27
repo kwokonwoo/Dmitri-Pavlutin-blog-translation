@@ -10,5 +10,7 @@
 
 [JavaScript闭包的简明阐释](docs/translation-5.md)
 
+[JavaScript变量提升详解](docs/translation-6.md)
+
 ## License
 Licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)

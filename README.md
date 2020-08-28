@@ -12,7 +12,7 @@
 
 [JavaScript变量提升详解](docs/translation-6.md)
 
-[大白话解释JavaScript作用域](docs/translation-7.md)
+[白话JavaScript作用域](docs/translation-7.md)
 
 ## License
 Licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)

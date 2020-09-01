@@ -99,7 +99,7 @@ JavaScript允许使用对象、数组、`null`、`undefined`作为操作数。�
 因为操作数既不是对象也不是字符串，所以`null`被转换为数字，然后计算数字求和。
 
 ##### 例6：字符串和`null`
-`var result = "queen" + null; // "queennull"
+`var result = "queen" + null; // "queennull"`
 
 解释：
 

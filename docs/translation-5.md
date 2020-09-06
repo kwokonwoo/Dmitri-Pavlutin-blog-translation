@@ -1,5 +1,4 @@
 ## JavaScript闭包的简明阐释
-
 [A Simple Explanation of JavaScript Closures](https://dmitripavlutin.com/simple-explanation-of-javascript-closures/)
 
 借助闭包，回调函数、事件处理器和高阶函数才能够访问外部作用域的变量。闭包在函数式编程中是重要的，并且在关于JavaScript的面试中也经常被问到。
@@ -11,3 +10,4 @@
 在开始之前，我建议你不要跳过作用域和词法作用域部分，这些部分对理解闭包至关重要，如果你弄懂了这些部分内容，闭包的概念将不证自明。
 
 ### 一 作用域
+我们在定义一个变量的时候，

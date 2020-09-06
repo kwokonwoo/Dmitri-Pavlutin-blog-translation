@@ -37,3 +37,5 @@ console.log(count); // ReferenceError: count is not defined
 
 
 <img src="../img/javascript-scope-3" width = "536" height = "610" alt="JavaScript scope" />
+
+现在

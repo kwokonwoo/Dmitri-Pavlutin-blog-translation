@@ -10,4 +10,28 @@
 在开始之前，我建议你不要跳过作用域和词法作用域部分，这些部分对理解闭包至关重要，如果你弄懂了这些部分内容，闭包的概念将不证自明。
 
 ### 一 作用域
-我们在定义一个变量的时候，
+我们在定义一个变量的时候，希望可以在某些范围内访问它。例如，在`calculate()`函数中`result`变量存在是有意义的，但是在`calculate`函数外，`result`变量是没用的。
+
+变量的可访问性取决于作用域。在变量的作用域中你可以自由访问它，但在作用域之外，该变量不可访问。
+
+在JavaScript中，作用域由函数或代码块创建。
+
+让我们来看一下作用域是如何影响变量`count`的可用性。变量`count`属于函数`foo()`创建的作用域。
+
+```javascript
+function foo() {
+  // 函数作用域
+  let count = 0;
+  console.log(count); // logs 0
+}
+
+foo();
+console.log(count); // ReferenceError: count is not defined
+```
+
+在`foo()`作用域中可以自由访问`count`。
+
+然而，在`foo()`作用域之外，`count`是不可访问的。如果你试图从外部访问`count`，JavaScript会抛出`ReferenceError: count is not defined`。
+
+在JavaScript中，作用域表示如果你在函数或代码块内定义变量，那么你只可以在函数或代码块内使用该变量。上面的例子证明了这个行为。
+

@@ -35,3 +35,5 @@ console.log(count); // ReferenceError: count is not defined
 
 在JavaScript中，作用域表示如果你在函数或代码块内定义变量，那么你只可以在函数或代码块内使用该变量。上面的例子证明了这个行为。
 
+
+<img src="../img/javascript-scope-3" width = "536" height = "610" alt="JavaScript scope" />

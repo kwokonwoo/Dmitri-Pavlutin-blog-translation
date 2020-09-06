@@ -35,7 +35,12 @@ console.log(count); // ReferenceError: count is not defined
 
 在JavaScript中，作用域表示如果你在函数或代码块内定义变量，那么你只可以在函数或代码块内使用该变量。上面的例子证明了这个行为。
 
-
 <img src="../img/javascript-scope-3" width = "536" height = "610" alt="JavaScript scope" />
 
-现在
+现在我们来看关于作用域的概况表述：
+> 作用域是一个控制变量可访问性的空间上的策略。
+直接导致的属性就是作用域会隔离变量，这样很好因为不同的作用域可以拥有相同的变量名。
+
+你可以在不同的作用域里重用常见的变量名（`count`、`index`、`current`、`value`等），而不必担心发生冲突。
+
+`foo`和`bar`

@@ -43,4 +43,23 @@ console.log(count); // ReferenceError: count is not defined
 
 你可以在不同的作用域里重用常见的变量名（`count`、`index`、`current`、`value`等），而不必担心发生冲突。
 
-`foo`和`bar`
+`foo()`和`bar()`函数拥有它们各自的同名变量`count`：
+```javascript
+function foo() {
+  // "foo" function scope
+  let count = 0;
+  console.log(count); // logs 0
+}
+
+function bar() {
+  // "bar" function scope
+  let count = 1;
+  console.log(count); // logs 1
+}
+
+foo();
+bar();
+```
+`foo()`和`bar()`函数作用域中的变量`count`不会发生冲突。
+
+### 二 作用域嵌套

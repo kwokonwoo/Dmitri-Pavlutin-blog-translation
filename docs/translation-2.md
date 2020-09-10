@@ -88,5 +88,25 @@ console.log(window.myString); // => 'Hello World!'
 </script>
 ```
 
-#### 2.2 严格模式函数调用中的'this'
-> 在严格模式下，函数调用中的`this`是`undefined`
+#### 2.2 严格模式函数调用中的`this`
+> 在严格模式下，函数调用中的`this`是`undefined`。
+
+从ECMAScript5.1开始，就可以使用严格模式了，严格模式是具有限制性的JavaScript变体。它提供了更好的安全性和更强大的错误检查。
+
+要启用严格模式，需要将'use strict'指令放在函数体的顶部。
+
+启用后，严格模式会影响执行环境，从而使得在常规函数调用中`this`的值为`undefined`。与2.1的例子相反，执行环境不再是全局对象。
+
+<img src="../img/this-in-function-invocation-strict-mode.webp" width = "536" height = "610" alt="This in function invacation strict mode" />
+
+在严格模式下的函数调用：
+```javascript
+function multiply(a, b) {
+  'use strict'; // enable the strict mode
+  console.log(this === undefined); // => true
+  return a * b;
+}
+// multiply() function invocation with strict mode enabled
+// this in multiply() is undefined
+multiply(2, 5); // => 10
+```

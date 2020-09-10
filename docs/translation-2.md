@@ -53,3 +53,40 @@ console.log(message); // 'Hello World!'
 立即调用函数表达式也是函数调用：第一对括号`(function(name) {...})`是值为函数对象的表达式，后接参数为`World`的一对括号。
 
 #### 2.1 函数调用中的'this'
+> 在函数调用中`this`是全局对象。
+
+全局对象取决于执行环境。在浏览器中，全局对象是`window`对象。
+
+<img src="../img/this-in-function-invocation.webp" width = "536" height = "610" alt="This in function invacation" />
+
+在函数调用中，执行环境是全局对象。
+
+我们来看一下下面函数的环境：
+```javascript
+function sum(a, b) {
+  console.log(this === window); // true
+  this.myNumber = 20; // 给全局对象添加'myNumber'属性
+  return a + b;
+}
+// sum()作为函数被调用
+// sum()中的this是全局对象（window）
+sum(15, 16); // 31
+window.myNumber; // 20
+```
+在`sum(15, 16)`被调用的时候，JavaScript自动地把`this`设置为全局对象（在浏览器中为`window`）。
+
+当`this`在函数作用域外（最顶层作用域：全局执行环境）时，它也是全局对象：
+```javascript
+console.log(this === window); // => true
+this.myString = 'Hello World!';
+console.log(window.myString); // => 'Hello World!'
+```
+```javascript
+<!-- In an html file -->
+<script type="text/javascript">
+ console.log(this === window); // => true
+</script>
+```
+
+#### 2.2 严格模式函数调用中的'this'
+> 在严格模式下，函数调用中的`this`是`undefined`

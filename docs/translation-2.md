@@ -110,3 +110,45 @@ function multiply(a, b) {
 // this in multiply() is undefined
 multiply(2, 5); // => 10
 ```
+在严格模式下调用函数`multiply(2, 5)`时，`this`是`undefined`。
+
+严格模式不仅在当前作用域起作用，在内部作用域（内部声明的函数）也同样起作用：
+```javascript
+function execute() {
+  'use strict'
+  
+  function concat(str1, str2) {
+    //同样采用了严格模式
+    console.log(this === undefined); // => true
+    return str1 + str2;
+  }
+  
+    // concat()作为函数在严格模式中被调用
+    // concat()中this是undefined
+    concat('Hello', ' World!'); // => "Hello World!"
+}
+
+execute();
+```
+`use strict`在`execute`的顶部，从而在其作用域启用了严格模式。因为`concat`在`excute`作用域内声明，因此它继承了严格模式。调用`concat('Hello', ' World!')让`this`成为`undefined`。
+
+单个JavaScript文件可能同时包含严格模式和非严格模式。因此，对于相同的调用类型，可能在单个脚本中有不同的行为。
+```javascript
+function nonStrictSum(a, b) {
+  // 非严格模式
+  console.log(this === window); // => true
+  return a + b;
+}
+
+function strictSum(a, b) {
+  'use strict';
+  // 严格模式启用
+  console.log(this === undefined); // => true
+  return a + b;
+}
+
+// 在非严格模式下调用nonStrictSum()，nonStrictSum()中this是window对象
+nonStrict(5, 6); // => 11
+// 在严格模式下调用strictSum()，strictSum()中的this是undefined
+strictSum(8, 12); // => 20
+```

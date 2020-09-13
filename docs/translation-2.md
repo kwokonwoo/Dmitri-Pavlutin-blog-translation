@@ -152,3 +152,19 @@ nonStrict(5, 6); // => 11
 // 在严格模式下调用strictSum()，strictSum()中的this是undefined
 strictSum(8, 12); // => 20
 ```
+
+#### 2.3 陷阱：内部函数的`this`
+❗函数调用的一个常见误区就是认为内部函数和外部函数的`this`是一样的。
+
+👍实际上内部函数的的环境只取决于它的调用类型，而不是外部函数的环境。
+
+要改变`this`的值，可以使用间接调用来改变内部函数的环境（使用`.call()`或`apply()`，见[5](#jump5)）或者创建绑定函数（使用`.bind()`，见[6](#jump6)）。
+
+下面的例子计算了两个数字的和：
+```javascript
+const numbers = {}
+```
+
+### 5. <span id="jump5">简介调用</span>
+
+### 6. <span id="jump6">绑定函数</span>

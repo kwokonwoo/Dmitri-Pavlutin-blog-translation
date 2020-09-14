@@ -162,8 +162,29 @@ strictSum(8, 12); // => 20
 
 下面的例子计算了两个数字的和：
 ```javascript
-const numbers = {}
+const numbers = {
+  numbersA: 5,
+  numbersB:10,
+  
+  sum: function() {
+    console.log(this === numbers); // => true
+    
+    function calculate() {
+      // 
+      console.log(this === numbers); // => false
+      return this.numberA + this.numberB;
+    }
+    
+    return calculate();
+  }
+};
+
+numbers.sum(); // => NaN or throws TypeError in strict mode
 ```
+❗`numbers.sum()` 是作用于对象的方法调用（见[3](#jump3)），所以`sum`的环境是`numbers`对象。`calculate()`函数在`sum()`中定义，因此你可能认为`calculate()`中`this`也是`numbers`对象。
+
+`calculate()`是函数调用（而不是方法调用），因此
+
 
 ### 5. <span id="jump5">简介调用</span>
 

@@ -16,5 +16,7 @@
 
 [详解JavaScript加性操作符](docs/translation-8.md)
 
+[趣解JavaScript之async/await](docs/translation-9.md)
+
 ## License
 Licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)

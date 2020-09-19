@@ -18,5 +18,7 @@
 
 [趣解JavaScript之async/await](docs/translation-9.md)
 
+[JavaScript之继承——理解构造函数属性](docs/translation-10.md)
+
 ## License
 Licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)

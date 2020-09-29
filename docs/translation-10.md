@@ -84,7 +84,11 @@ Cat.prototype.clone = function() {
 Cat.prototype.constructor === Cat; // => true
 
 ```
-
+因为属性是从原型继承的，因此实例对象也可以获得构造器属性。
+```javascrip
+var catInstance = new Cat('Mew');
+catInstance.constructor === Cat // => true
+```
 
 
 

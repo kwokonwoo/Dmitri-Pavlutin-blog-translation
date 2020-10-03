@@ -15,7 +15,7 @@
 
 每种调用类型都以自己的方式定义上下文，因此`this`会与开发者的预期有所差距。
 
-<img src="../img/Gentle-explanation-of-this--7--1.png" width = "536" height = "610" alt="The mystery of this" />
+<img src="../img/Gentle-explanation-of-this--7--1.png" alt="The mystery of this" />
 
 此外，[严格模式](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Strict_mode)也会影响执行上下文。
 
@@ -170,7 +170,7 @@ const numbers = {
     console.log(this === numbers); // => true
     
     function calculate() {
-      // 
+      // this是window（严格模式下为window）
       console.log(this === numbers); // => false
       return this.numberA + this.numberB;
     }
@@ -183,7 +183,119 @@ numbers.sum(); // => NaN or throws TypeError in strict mode
 ```
 ❗`numbers.sum()` 是作用于对象的方法调用（见[3](#jump3)），所以`sum`的环境是`numbers`对象。`calculate()`函数在`sum()`中定义，因此你可能认为`calculate()`中`this`也是`numbers`对象。
 
-`calculate()`是函数调用（而不是方法调用），因此
+`calculate()`是函数调用（而不是方法调用），因此`this`在这里是全局对象`window`（见2.1），在严格模式下是`undefined`。即使外层函数`sum()`的环境`numbers`对象，这里也没有影响。
+
+`numbers.sum()`的调用结果是`NaN`（在严格模式下抛出`TypeError: Cannot read property 'numberA' of undefined`错误）。显然不是预期的结果`5 + 10 = 15`，都是因为`calculate`没有正确的调用。
+
+👍为了解决这个问题，`calculate()`函数必须要和`sum()`方法同一环境下执行，才能访问`numberA`和`numberB`属性。
+
+一个办法就是通过`calculate.call(this)`（函数的间接调用，见第5节）手动的改变`calculate()`的作用域：
+```javascript
+const numbers = {
+  numberA: 5,
+  numberB: 10,
+  sum: function() {
+    console.log(this === number); // => true
+    
+    function calculate() {
+      console.log(this === number); // => true
+      return this.numberA + this.numberB;
+    }
+    
+    // 通过.call()方法改变作用域
+    return calculate.call(this);
+  }
+};
+numbers.sum(); // => 15
+```
+`calculate.call(this)`照常执行函数，但是把第一个参数作为作用域。
+
+现在`this.numberA + this.numberB`等价于`numbers.numberA + numbers.numberB`，函数返回预期结果`5 + 10 = 15`。
+
+另一个更好的办法是使用箭头函数：
+```javascript
+const numbers = {
+  numberA: 5,
+  numberB: 10,
+  sum: function() {
+    console.log(this === numbers); // => true
+    
+    const calculate = () => {
+      console.log(this === number); // => true
+      return this.numberA + this.numberB;
+    }
+    
+    return calculate();
+  }
+};
+
+numbers.sum(); // => 15
+```
+箭头函数词法上绑定`this`，或者更为简单的使用`sum()`方法的`this`。
+
+### 3. 方法调用
+**方法**是对象属性中的函数，例如：
+```javascript
+const myObject = {
+  // helloFunction 是方法
+  helloFunction: function() {
+    return 'Hello World!';
+  }
+};
+
+const message = myObject.helloFunction();
+```
+`helloFunction`是`myObject`的方法，使用属性访问器`myObject.helloFunction`可以访问该方法。
+
+当形式为属性访问器的表达式是一个函数对象后加上一个开括号和逗号分隔的参数表达式列表，以及一个闭括号时，执行**方法调用**。
+
+回想之前的例子，`myObject.helloFunction()`是`helloFunction`在对象`myObject`上的方法调用。
+
+还有一些方法调用的例子诸如：`[1, 2].join(',')`或`/\s/.test('beautiful world')`。
+
+区分**函数调用**和**方法调用**十分重要。最主要的区别方法调用需要属性访问器的形式调用函数（`obj.myFunc()`或`obj['myFunc']()`），而函数调用不需要（`myFunc()`）。
+```javascript
+const words = ['Hello', 'World'];
+
+words.join(', '); // 方法调用
+const obj = {
+  myMethod() {
+    return new Date().toString();
+  }
+};
+obj.myMethod(); // 方法调用
+
+const func = obj.myMethod;
+func();              // 函数调用
+parseFloat('16.60'); // 函数调用
+isNaN(0);            // 函数调用
+```
+了解函数调用与方法调用之间的区别有助于识别上下文。
+
+#### 3.1 方法调用中的this
+> 在方法调用中，`this`是拥有方法的对象。
+
+在对象上调用方法时，`this`是拥有该方法的对象。
+
+<img src="../img/this in method invocation.png" alt="this in method invocation.png" />
+
+我们来创建一个对象，这个对象用来增加数字的方法：
+```javascrip
+const calc = {
+  num: 0,
+  increment() {
+    this.num += 1;
+    return this.num;
+  }
+};
+
+// 方法调用：this是calc
+calc.increment(); // => 1
+calc.increment(); // => 2
+```
+调用`calc.increment()`使得`increment`函数的上下文是`calc`对象。因此可以用`this.num`增加`number`属性。
+
+
 
 
 ### 5. <span id="jump5">简介调用</span>

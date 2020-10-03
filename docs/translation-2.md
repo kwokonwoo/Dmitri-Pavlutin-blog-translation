@@ -15,7 +15,7 @@
 
 每种调用类型都以自己的方式定义上下文，因此`this`会与开发者的预期有所差距。
 
-<img src="../img/Gentle-explanation-of-this--7--1.png" alt="The mystery of this" />
+<img style="-webkit-user-select: none;margin: auto;cursor: zoom-in;" src="https://dmitripavlutin.com/static/1b389a46f5ed3a0a60724be89e938696/611e8/Gentle-explanation-of-this--7--1.png" width="455" height="302">
 
 此外，[严格模式](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Strict_mode)也会影响执行上下文。
 
@@ -57,7 +57,7 @@ console.log(message); // 'Hello World!'
 
 全局对象取决于执行环境。在浏览器中，全局对象是`window`对象。
 
-<img src="../img/this-in-function-invocation.webp" width = "536" height = "610" alt="This in function invacation" />
+<img style="-webkit-user-select: none;margin: auto;cursor: zoom-in;" src="https://dmitripavlutin.com/static/7035b35b8d8dce31376d9839065e58f7/19891/2-1.png" width="455" height="334">
 
 在函数调用中，执行环境是全局对象。
 
@@ -97,7 +97,7 @@ console.log(window.myString); // => 'Hello World!'
 
 启用后，严格模式会影响执行环境，从而使得在常规函数调用中`this`的值为`undefined`。与2.1的例子相反，执行环境不再是全局对象。
 
-<img src="../img/this-in-function-invocation-strict-mode.webp" width = "536" height = "610" alt="This in function invacation strict mode" />
+<img style="-webkit-user-select: none;margin: auto;cursor: zoom-in;" src="https://dmitripavlutin.com/static/2a757bd246d0f4e60395273d0aeeb767/42ccd/3-1.png" width="455" height="387">
 
 在严格模式下的函数调用：
 ```javascript
@@ -277,7 +277,7 @@ isNaN(0);            // 函数调用
 
 在对象上调用方法时，`this`是拥有该方法的对象。
 
-<img src="../img/this in method invocation.png" width = "455" height = "365" alt="this in method invocation.png" />
+<img style="-webkit-user-select: none;margin: auto;cursor: zoom-in;" src="https://dmitripavlutin.com/static/baf7c3a9ba2fa5c631ea32b940d95f95/1c68e/4-1.png" width="455" height="365">
 
 我们来创建一个对象，这个对象用来增加数字的方法：
 ```javascrip

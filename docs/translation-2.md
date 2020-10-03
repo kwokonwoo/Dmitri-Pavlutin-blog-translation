@@ -277,7 +277,7 @@ isNaN(0);            // 函数调用
 
 在对象上调用方法时，`this`是拥有该方法的对象。
 
-<img src="../img/this in method invocation.png" alt="this in method invocation.png" />
+<img src="../img/this in method invocation.png" width = "455" height = "365" alt="this in method invocation.png" />
 
 我们来创建一个对象，这个对象用来增加数字的方法：
 ```javascrip

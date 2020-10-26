@@ -20,5 +20,7 @@
 
 [JavaScript之继承——理解构造器属性](docs/translation-10.md)
 
+[JavaScript类完全指南](docs.translation-11.md)
+
 ## License
 Licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
